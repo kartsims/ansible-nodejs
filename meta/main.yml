@@ -1,0 +1,22 @@
+galaxy_info:
+  author: Simon Tarchichi
+  description: Install of NodeJS and NPM on Debian/Ubuntu based on the official setup script
+  
+  license: MIT
+  
+  min_ansible_version: 1.2
+  
+  platforms:
+  - name: Ubuntu
+   versions:
+   - precise
+   - trusty
+  - name: Debian
+   versions:
+   - jessie
+   - wheezy
+  
+  galaxy_tags:
+    - nodejs
+    - node
+    - npm
