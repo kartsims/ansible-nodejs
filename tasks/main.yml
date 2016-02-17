@@ -1,0 +1,61 @@
+---
+
+- name: Check Node version
+  command: node -v
+  register: nodejs_current
+  ignore_errors: true
+
+- name: Check NPM version
+  command: npm -v
+  register: npm_current
+  ignore_errors: true
+
+- debug: msg="{{nodejs_current}}"
+- debug: msg="{{npm_current}}"
+
+# First time the role is run, we need to install Node's latest version to include NPM (we might downgrade later if needed)
+- name: Install Node (first time)
+  include: install_node.yml
+  become: yes
+  when: nodejs_current.rc != 0 or npm_current.rc != 0
+
+# Update NPM version
+- name: Update NPM to latest version
+  become: yes
+  when: npm_current.rc == 0 and npm_version == 'latest'
+  npm:
+    name: npm
+    state: latest
+    global: yes
+
+- name: Update NPM to specific version
+  become: yes
+  when: npm_current.rc == 0 and npm_current.stdout != npm_version and npm_version != 'latest'
+  npm:
+    name: npm
+    version: "{{npm_version}}"
+    state: present
+    global: yes
+
+# Update Node version
+- name: Clean NPM cache
+  become: yes
+  command: npm cache clean -f
+
+- name: Check for "n" NPM package
+  become: yes
+  npm: name=n state=present global=yes
+
+- name: Update Node version
+  become: yes
+  command: n {{nodejs_version}}
+
+# 
+# # NPM Packages
+# - name: Install NPM Packages
+#   become: yes
+#   npm:
+#     name: "{{item}}"
+#     state: present
+#     global: yes
+#   with_items: "{{npm_packages}}"

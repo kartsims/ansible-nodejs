@@ -1,0 +1,26 @@
+---
+
+- name: Copy NodeJS official Debian setup script
+  copy:
+    src: setup_4.x
+    dest: /tmp/setup_4.x
+    mode: 0700
+
+- name: Execute setup script
+  command: /tmp/setup_4.x
+  args:
+    removes: /tmp/setup_4.x
+
+- name: Install NodeJS package
+  apt: name=nodejs 
+
+# reset these variables
+- name: Check Node version
+  command: node -v
+  register: nodejs_current
+  ignore_errors: true
+
+- name: Check NPM version
+  command: npm -v
+  register: npm_current
+  ignore_errors: true

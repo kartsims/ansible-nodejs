@@ -3,12 +3,14 @@ NodeJS
 
 Install NodeJS on Ubuntu/Debian machine using [official NodeJS setup script](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
 
+> **Warning** If you have already installed NodeJS on your system in another way than the official Debian/Ubuntu setup script (by compiling it yourself or using binaries), you would better clean up your system prior to executing this playbook. *Any feedback on this matter would be appreciated*.
+
 Variables
 --
 
 Name | Default value | Description
 --: | :--: | --
-nodejs_version | stable | NodeJS version to be installed. Can be `latest`, `stable`, `lts` or a specific version number (eg `5.1.0`).[See `n` package](https://www.npmjs.com/package/n)
+nodejs_version | stable | NodeJS version to be installed. Can be `latest`, `stable` or `lts`. [See `n` package](https://www.npmjs.com/package/n)
 npm_version | latest | NPM version to install. Can be `latest` or a specific version (eg `3.3.6`) Note that [*NPM installs itself*](https://docs.npmjs.com/getting-started/installing-node#updating-npm)
 npm_packages | *empty* | List of packages to check for global presence. Should be a YAML array.
 

@@ -1,7 +1,7 @@
 ---
 
 # NodeJS version (first-time install using NodeJS.org's official setup script for Debian, then version is managed by NPM module "n")
-# Possible values : latest, stable, lts or a specific version number see https://www.npmjs.com/package/n
+# Possible values : latest, stable or lts, see https://www.npmjs.com/package/n
 nodejs_version: "stable"
 
 # NPM version, you may also specify a version number
