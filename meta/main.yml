@@ -20,3 +20,5 @@ galaxy_info:
     - nodejs
     - node
     - npm
+
+  dependencies: []
