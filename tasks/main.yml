@@ -10,9 +10,6 @@
   register: npm_current
   ignore_errors: true
 
-- debug: msg="{{nodejs_current}}"
-- debug: msg="{{npm_current}}"
-
 # First time the role is run, we need to install Node's latest version to include NPM (we might downgrade later if needed)
 - name: Install Node (first time)
   include: install_node.yml
